@@ -1,4 +1,4 @@
--- How to run (in psql): \i /Users/kianna/Desktop/review-module/schema.sql
+-- How to run (in psql): \i /Users/kianna/Desktop/review-module/database/postgres/schema.sql
 
 DROP DATABASE IF EXISTS project_nomad_reviews;
 
@@ -8,6 +8,8 @@ CREATE DATABASE project_nomad_reviews;
 
 CREATE TABLE listings (
   id SERIAL PRIMARY KEY
+  -- cumulative ratings
+  -- 
 );
 
 CREATE TABLE users (
@@ -41,5 +43,8 @@ CREATE TABLE reviews (
 );
 
 CREATE INDEX listing_id ON reviews (listing_id);
+CREATE INDEX review_user_id ON reviews (review_user_id);
+CREATE INDEX response_owner_id ON reviews (response_owner_id);
+
 
 

@@ -1,33 +1,28 @@
 const express = require('express');
 const path = require('path');
-const db = require('../database/postgres/index');
+const bodyParser = require('body-parser');
+const db = require('../database/postgres/indexPSQL');
 const app = express();
 
 // resolves a specific listing requested
 app.use('/', express.static(path.join(__dirname, '/../public')));
 app.use('/listings/:id', express.static(path.join(__dirname, '/../public')));
+app.use(bodyParser.json());
 
 /************************  CREATE (POST) *************************/
-app.post('/listings/:listingId/overviews/post', (req, res) => {
-  db.postOverview( req.params.listingId, (err, data) => {
+
+app.post('/listings/reviews/post', (req, res) => {
+  const {listingId, rating_accuracy, rating_communication, rating_cleanliness, rating_location, rating_checkin, rating_value, review_user_id, review_body, review_date, response_date, response_owner_id, response_body} = req.body;
+    console.log(req.body.listingId);
+
+  db.postReviews(listingId, rating_accuracy, rating_communication, rating_cleanliness, rating_location, rating_checkin, rating_value, review_user_id, review_body, review_date, response_date, response_owner_id, response_body, (err, data) => {
     if (err) {
+      console.log('your query doesnt work', err)
       res.status(500).end();
     } else {
       res.header('Access-Control-Allow-Origin', '*');
       res.status(200);
       res.end();
-    }
-  });
-});
-
-app.post('/listings/:listingId/reviews/post', (req, res) => {
-  db.postReviews( req.params.listingId, (err, data) => {
-    if (err) {
-      res.status(500).end();
-    } else {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.status(200);
-      res.end);
     }
   });
 });
@@ -58,31 +53,32 @@ app.get('/listings/:listingId/reviews', (req, res) => {
 });
 
 /************************ UPDATE (put) *************************/
-app.put('/listings/:listingId/overviews', (req, res) => {
-  db.putOverview( req.params.listingId, (err, data) => {
+app.put('/listings/reviews/update', (req, res) => {
+  const {reviewId, reviewBody} = req.body;
+  console.log(req.body)
+  db.updateReviews(reviewId, reviewBody, (err, data) => {
     if (err) {
       res.status(500).end();
     } else {
       res.header('Access-Control-Allow-Origin', '*');
       res.status(200);
-      res.send(data);
-    }
-  });
-});
-
-app.put('/listings/:listingId/reviews', (req, res) => {
-  db.putReviews( req.params.listingId, (err, data) => {
-    if (err) {
-      res.status(500).end();
-    } else {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.status(200);
-      res.send(data);
+      res.end();
     }
   });
 });
 
 /************************ DELETE (delete) *************************/
-
+app.delete('/listings/reviews/delete', (req, res) => {
+  const reviewId = req.body.reviewId;
+  db.deleteReviews(reviewId, (err, data) => {
+    if (err) {
+      res.status(500).end();
+    } else {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.status(200);
+      res.end();
+    }
+  });
+})
 
 module.exports = app;
