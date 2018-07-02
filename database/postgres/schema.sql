@@ -8,8 +8,6 @@ CREATE DATABASE project_nomad_reviews;
 
 CREATE TABLE listings (
   id SERIAL PRIMARY KEY
-  -- cumulative ratings
-  -- 
 );
 
 CREATE TABLE users (
