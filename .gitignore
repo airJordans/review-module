@@ -26,5 +26,5 @@ build/
 dist/
 public/bundle.js
 public/bundle-reviews.js
-database/postgres/sample_data_psql/
-
+database/postgres/sample_data_psql
+database/cassandra/sample_data_cql
