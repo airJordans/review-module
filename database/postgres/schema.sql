@@ -33,16 +33,9 @@ CREATE TABLE reviews (
 
   response_date TEXT,
   response_owner_id INT DEFAULT NULL,
-  response_body TEXT,
-
-  FOREIGN KEY (listing_id) REFERENCES listings(id),
-  FOREIGN KEY (review_user_id) REFERENCES users(id),
-  FOREIGN KEY (response_owner_id) REFERENCES users(id) 
+  response_body TEXT
 );
 
-CREATE INDEX listing_id ON reviews (listing_id);
-CREATE INDEX review_user_id ON reviews (review_user_id);
-CREATE INDEX response_owner_id ON reviews (response_owner_id);
 
 
 

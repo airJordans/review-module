@@ -2,50 +2,50 @@
 const fs = require('fs');
 const faker = require('faker');
 
-/************************* USER TABLE DATA GENERATION ************************/
-let users;
-let profile_pic_id;
-let userRows = [];
+// /************************* USER TABLE DATA GENERATION ************************/
+// let users;
+// let profile_pic_id;
+// let userRows = [];
 
-let userHeaders = "username, profile_pic_id\n";
-fs.writeFileSync('./sample_data_psql/user_sample.csv', userHeaders, 'utf8');
-console.time('user table');
-for (let i = 1; i <= 10000001; i++) {
-  username = faker.name.firstName();
-  profile_pic_id = i;
+// let userHeaders = "username, profile_pic_id\n";
+// fs.writeFileSync('./sample_data_psql/user_sample.csv', userHeaders, 'utf8');
+// console.time('user table');
+// for (let i = 1; i <= 10000001; i++) {
+//   username = faker.name.firstName();
+//   profile_pic_id = i;
 
-  users = [username, profile_pic_id];
-  userRows.push(users);
+//   users = [username, profile_pic_id];
+//   userRows.push(users);
  
-  if (i % 100000 === 0) {
-    let chunck = userRows.join('\n') + '\n';
-    fs.appendFileSync('./sample_data_psql/user_sample.csv', chunck, 'utf8');
-    userRows = [];
-  }
-}
-console.timeEnd('user table');
-/************************* LISTINGS DATA GENERATION ************************/
-let listings;
-let listingId;
-let listingRows = [];
+//   if (i % 100000 === 0) {
+//     let chunck = userRows.join('\n') + '\n';
+//     fs.appendFileSync('./sample_data_psql/user_sample.csv', chunck, 'utf8');
+//     userRows = [];
+//   }
+// }
+// console.timeEnd('user table');
+// /************************* LISTINGS DATA GENERATION ************************/
+// let listings;
+// let listingId;
+// let listingRows = [];
 
-let listingHeaders = "id\n";
-fs.writeFileSync('./sample_data_psql/listing_sample.csv', listingHeaders, 'utf8');
+// let listingHeaders = "id\n";
+// fs.writeFileSync('./sample_data_psql/listing_sample.csv', listingHeaders, 'utf8');
 
-console.time('listings table');
-for (let j = 1; j <= 10000001; j++) {
-  listingId = j;
-  listings = [listingId];
+// console.time('listings table');
+// for (let j = 1; j <= 10000001; j++) {
+//   listingId = j;
+//   listings = [listingId];
 
-  listingRows.push(listings);
+//   listingRows.push(listings);
 
-  if (j % 100000 === 0) {
-    let chunck = listingRows.join('\n') + '\n';
-    fs.appendFileSync('./sample_data_psql/listing_sample.csv', chunck, 'utf8');
-    listingRows = [];
-  }
-}
-console.timeEnd('listings table');
+//   if (j % 100000 === 0) {
+//     let chunck = listingRows.join('\n') + '\n';
+//     fs.appendFileSync('./sample_data_psql/listing_sample.csv', chunck, 'utf8');
+//     listingRows = [];
+//   }
+// }
+// console.timeEnd('listings table');
 /************************* REVIEWS DATA GENERATION ************************/
 // let reviewId;
 let reviewRows = [];
@@ -65,27 +65,27 @@ let response_owner_id;
 let response_body;
 
 let reviewHeaders = "listingId, rating_accuracy, rating_communication, rating_cleanliness, rating_location, rating_checkin, rating_value, review_user_id, review_body, review_date, response_date, response_owner_id, response_body\n";
-fs.writeFileSync('./sample_data_psql/reviews_sample.csv', reviewHeaders, 'utf8');
+fs.writeFileSync('./sample_data_psql/reviews_sample_40millionwords.csv', reviewHeaders, 'utf8');
 
-console.time('reviews table');
-for (let j = 1; j <= 10000001; j++) {
+console.time('reviews table 1');
+for (let j = 1; j <= 40000001; j++) {
   let date = faker.date.between('2018-01-01', '2018-12-31');
 
-  listingId = faker.random.number({min: 1, max: 2000000});
+  listingId = faker.random.number({min: 1, max: 10000000});
 
-  rating_accuracy = faker.random.number({min: 1, max: 3});
-  rating_communication = faker.random.number({min: 1, max: 3});
-  rating_cleanliness = faker.random.number({min: 1, max: 3});
-  rating_location = faker.random.number({min: 1, max: 3});
-  rating_checkin = faker.random.number({min: 1, max: 3});
-  rating_value = faker.random.number({min: 1, max: 3});
-  review_user_id = faker.random.number({min: 1, max: 10000000});
+  rating_accuracy = faker.random.number({min: 1, max: 5});
+  rating_communication = faker.random.number({min: 1, max: 5});
+  rating_cleanliness = faker.random.number({min: 1, max: 5});
+  rating_location = faker.random.number({min: 1, max: 5});
+  rating_checkin = faker.random.number({min: 1, max: 5});
+  rating_value = faker.random.number({min: 1, max: 5});
+  review_user_id = faker.random.number({min: 1, max: 100});
   
-  review_body = faker.lorem.paragraph();
+  review_body = faker.lorem.word();
   review_date = date;
   response_date = date;
-  response_owner_id = faker.random.number({min: 1, max: 10000000});
-  response_body = faker.lorem.paragraph();
+  response_owner_id = faker.random.number({min: 1, max: 100});
+  response_body = faker.lorem.word();
 
   reviews = [
     listingId, rating_accuracy, rating_communication, rating_cleanliness, 
@@ -98,11 +98,17 @@ for (let j = 1; j <= 10000001; j++) {
   
   if (j % 100000 === 0) {
     let chunck = reviewRows.join('\n') + '\n';
-    fs.appendFileSync('./sample_data_psql/reviews_sample.csv', chunck, 'utf8');
+    fs.appendFileSync('./sample_data_psql/reviews_sample_40millionwords.csv', chunck, 'utf8');
     reviewRows = [];
   }
 }
-console.timeEnd('reviews table');
+console.timeEnd('reviews table 1');
+
+
+
+
+
+
 
 // (listing_id,rating_accuracy,rating_communication,rating_cleanliness,rating_location,rating_checkin,rating_value,review_user_id,review_body,review_date,response_date,response_owner_id,response_body)
 // id, listingId, rating_accuracy, rating_communication, rating_cleanliness, 

@@ -1,10 +1,16 @@
 config:
   target: 'http://localhost:3003'
   phases:
-    - duration: 30
+    - duration: 60
       arrivalRate: 1000
 scenarios:
   - flow:
+    # - loop:
+    #   - get:
+    #       url: "/listings/{{$randomNumber(1, 10000000)}}/reviews/"
+    #   - get:
+    #       url: "/listings/{{$randomNumber(1, 10000000)}}/overviews/"
+    #   count: 100
     - get:
         url: "/listings/{{$randomNumber(1, 10000000)}}/reviews/"
     - get:
@@ -26,9 +32,3 @@ scenarios:
     #       response_date: "11/34/3241", 
     #       response_owner_id: 3, 
     #       response_body: "Yo you you"
-
-    # - loop:
-    #   - get:
-    #       url: "/listings/{{$randomNumber(1, 10000000)}}/reviews/"
-    #       # url: "/listings/{{$randomNumber(1, 10000000)}}/overviews/"
-      # count: 5

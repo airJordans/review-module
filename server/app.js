@@ -14,11 +14,9 @@ app.use(bodyParser.json());
 
 app.post('/listings/reviews/post', (req, res) => {
   const {listingId, rating_accuracy, rating_communication, rating_cleanliness, rating_location, rating_checkin, rating_value, review_user_id, review_body, review_date, response_date, response_owner_id, response_body} = req.body;
-    console.log(req.body.listingId);
 
   db.postReviews(listingId, rating_accuracy, rating_communication, rating_cleanliness, rating_location, rating_checkin, rating_value, review_user_id, review_body, review_date, response_date, response_owner_id, response_body, (err, data) => {
     if (err) {
-      console.log('your query doesnt work', err)
       res.status(500).end();
     } else {
       res.header('Access-Control-Allow-Origin', '*');
@@ -71,6 +69,7 @@ app.put('/listings/reviews/update', (req, res) => {
 /************************ DELETE (delete) *************************/
 app.delete('/listings/reviews/delete', (req, res) => {
   const reviewId = req.body.reviewId;
+  
   db.deleteReviews(reviewId, (err, data) => {
     if (err) {
       res.status(500).end();
