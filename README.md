@@ -5,10 +5,9 @@
 
 ## Related Projects
 
-  - https://github.com/project-nomad/review-module
-  - https://github.com/project-nomad/image-carousel-module
-  - https://github.com/project-nomad/booking-module/
-  - https://github.com/project-nomad/listing-description-module
+  - https://github.com/airJordans/review-module
+  - https://github.com/airJordans/booking-module
+  - https://github.com/airJordans/listing-description-module
 
 ## Table of Contents
 
@@ -44,5 +43,4 @@ npm run serve
 ```
 
 Navigate to http://localhost:3003/listings/1/ in your browser. 
-
 
