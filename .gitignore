@@ -19,12 +19,12 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
+./newrelic.js
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 dist/
 public/bundle.js
 public/bundle-reviews.js
-database/listing_sample.csv
-database/reviews_sample.csv
-database/user_sample.csv
+database/postgres/sample_data_psql
+database/cassandra/sample_data_cql

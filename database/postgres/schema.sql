@@ -1,4 +1,4 @@
--- How to run (in psql): \i /Users/kianna/Desktop/review-module/schema.sql
+-- How to run (in psql): \i /Users/kianna/Desktop/review-module/database/postgres/schema.sql
 
 DROP DATABASE IF EXISTS project_nomad_reviews;
 
@@ -19,7 +19,7 @@ CREATE TABLE users (
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
   listing_id INT NOT NULL,
-
+  
   rating_accuracy INT DEFAULT 0,
   rating_communication INT DEFAULT 0,
   rating_cleanliness INT DEFAULT 0,
@@ -33,12 +33,9 @@ CREATE TABLE reviews (
 
   response_date TEXT,
   response_owner_id INT DEFAULT NULL,
-  response_body TEXT,
-
-  FOREIGN KEY (listing_id) REFERENCES listings(id),
-  FOREIGN KEY (review_user_id) REFERENCES users(id),
-  FOREIGN KEY (response_owner_id) REFERENCES users(id) 
+  response_body TEXT
 );
+
 
 
 

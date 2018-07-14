@@ -1,0 +1,34 @@
+config:
+  target: 'http://localhost:3003'
+  phases:
+    - duration: 60
+      arrivalRate: 1000
+scenarios:
+  - flow:
+    # - loop:
+    #   - get:
+    #       url: "/listings/{{$randomNumber(1, 10000000)}}/reviews/"
+    #   - get:
+    #       url: "/listings/{{$randomNumber(1, 10000000)}}/overviews/"
+    #   count: 100
+    - get:
+        url: "/listings/{{$randomNumber(1, 10000000)}}/reviews/"
+    - get:
+        url: "/listings/{{$randomNumber(1, 10000000)}}/overviews/"
+    # - post:
+    #     url: "/listings/reviews/post/"
+    #     json: 
+    #       listing_id: 100, 
+    #       rating_accuracy: 3, 
+    #       rating_accuracy: 5, 
+    #       rating_communication: 2, 
+    #       rating_cleanliness: 4, 
+    #       rating_location: 3, 
+    #       rating_checkin: 5, 
+    #       rating_value: 5, 
+    #       review_user_id: 1, 
+    #       review_body: "Hello world!3", 
+    #       review_date: "11/10/8332", 
+    #       response_date: "11/34/3241", 
+    #       response_owner_id: 3, 
+    #       response_body: "Yo you you"

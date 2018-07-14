@@ -1,0 +1,18 @@
+version: "2"
+services:
+  reviews_module: 
+    image: kiannaquach/reviews-module
+    ports: 
+      - 80:3003
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; npm run serve'
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://localhost:5432/project_nomad_reviews
+      - PORT=3003
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=project_nomad_reviews
