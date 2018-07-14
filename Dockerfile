@@ -8,4 +8,4 @@ COPY . /src/app
 RUN npm install --production
 EXPOSE 3003
 
-CMD npm run serve
+CMD npm run start
