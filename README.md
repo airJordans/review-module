@@ -1,13 +1,12 @@
-# Project Nomad: Review Module
+# AirJordans: Reviews System Design
 
-> A clone of Airbnb's review module, made with React, Express, MySQL & Styled Components.
+> System design of reviews microservice inherited from a legacy-codebase for a short-term lodging listing page. Listings range from 1 to 10 million where 1 listing has about 4 reviews. This microservice can sustain about 40 million reviews with a 1200 request per second and 130ms latency. 
 
 ## Related Projects
 
-  - https://github.com/project-nomad/review-module
-  - https://github.com/project-nomad/image-carousel-module
-  - https://github.com/project-nomad/booking-module/
-  - https://github.com/project-nomad/listing-description-module
+  - https://github.com/airJordans/review-module
+  - https://github.com/airJordans/booking-module
+  - https://github.com/airJordans/listing-description-module
 
 ## Table of Contents
 
@@ -36,11 +35,10 @@ From within the root directory:
 npm install -g webpack
 npm install
 npm run react-dev
-mysql.server start
-mysql -u root < schema.sql
-cd database
-node generator.js
+cd database/postgres
+node generatorPSQL.js
+\i /Users/{your_user_account}/Desktop/review-module/schema.sql
 npm run serve
 ```
 
-Finally, navigate to http://localhost:3003/listings/1/ in your browser. Any id from 1 to 100 is valid!
+Navigate to http://localhost:3003/listings/1/ in your browser. 
